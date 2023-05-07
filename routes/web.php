@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'index']);
+
+Route::prefix('/category')->group(function(){
+    Route::get('/games', [ProductsController::class, 'games']);
+    Route::get('/magang', [ProductsController::class, 'magang']);
+    Route::get('/kunjungan', [ProductsController::class, 'kunjungan']);
 });
+
+route::get('/news/{id}', [NewsController::class, 'news']);
+
+Route::prefix('/program')->group(function(){
+    Route::get('/karir', [ProgramController::class, 'karir']);
+    Route::get('/magang', [ProgramController::class, 'magang']);
+    Route::get('/kunjungan', [ProgramController::class, 'kunjungan']);
+});
+
+Route::get('/about-us', [AboutUsController::class, 'index']);
+route::resource('contact-us', ContactUsController::class);
