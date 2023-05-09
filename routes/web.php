@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\menuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,11 @@ Route::get('/today-special', function () {
     return view('today-special');
 });
 
-Route::get('/menu', function () {
-    return view('menu');
-});
+Route::get('/menu', [menuController::class, 'index']);
+
+// Route::get('/menu', function () {
+//     return view('menu');
+// });
 
 Route::get('/contact', function () {
     return view('contact');
