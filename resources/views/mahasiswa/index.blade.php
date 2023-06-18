@@ -17,6 +17,21 @@
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-md-5">
+            <form action="{{ route('mahasiswa.index') }}" method="GET">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search..." value="{{request('search')}}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-info" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <table class="table table-bordered">
         <tr>
             <th>Nim</th>
@@ -46,4 +61,6 @@
         </tr>
         @endforeach
     </table>
+
+    {{ $mahasiswa->links() }}
 @endsection

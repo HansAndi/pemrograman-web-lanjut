@@ -4,22 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
-use Database\Seeders\MahasiswaSeeder;
-use App\Http\Requests\StoreMahasiswaRequest;
-use App\Http\Requests\UpdateMahasiswaRequest;
 
 class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         ///fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
+        $search = $request->get('search');
+
+        if ($search) {
+            $mahasiswa = Mahasiswa::where('Nama', 'like', '%' . $search . '%')->paginate(5);
+        } else {
+            $mahasiswa = Mahasiswa::orderBy('Nim', 'desc')->paginate(5);
+        }
         return view('mahasiswa.index', compact('mahasiswa'));
-        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
