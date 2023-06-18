@@ -76,6 +76,13 @@ class MahasiswaController extends Controller
         return view('mahasiswa.show', ['mahasiswa' => $mahasiswa]);
     }
 
+    public function showKrs($Nim)
+    {
+        $mahasiswa = Mahasiswa::with('kelas')->where('Nim', $Nim)->first();
+
+        return view('mahasiswa.krs', ['mahasiswa' => $mahasiswa]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
