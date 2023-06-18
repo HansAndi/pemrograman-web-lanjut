@@ -41,18 +41,18 @@
             <th>No_Handphone</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($mahasiswa as $Mahasiswa)
+        @foreach ($mahasiswa as $mhs)
         <tr>
-            <td>{{ $Mahasiswa->Nim }}</td>
-            <td>{{ $Mahasiswa->Nama }}</td>
-            <td>{{ $Mahasiswa->Kelas }}</td>
-            <td>{{ $Mahasiswa->Jurusan }}</td>
-            <td>{{ $Mahasiswa->No_Handphone }}</td>
+            <td>{{ $mhs->Nim }}</td>
+            <td>{{ $mhs->Nama }}</td>
+            <td>{{ $mhs->kelas->nama_kelas }}</td>
+            <td>{{ $mhs->Jurusan }}</td>
+            <td>{{ $mhs->No_Handphone }}</td>
             <td>
-            <form action="{{ route('mahasiswa.destroy',$Mahasiswa->Nim) }}" method="POST">
+            <form action="{{ route('mahasiswa.destroy',$mhs->Nim) }}" method="POST">
 
-                <a class="btn btn-info" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
-                <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
+                <a class="btn btn-info" href="{{ route('mahasiswa.show',$mhs->Nim) }}">Show</a>
+                <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$mhs->Nim) }}">Edit</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Kelas;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mahasiswa>
@@ -19,9 +20,9 @@ class MahasiswaFactory extends Factory
         return [
             'Nim' => $this->faker->unique()->numerify('##########'),
             'Nama' => $this->faker->name(),
-            'Kelas' => $this->faker->randomElement(['TI-2A', 'TI-2B', 'TI-2C', 'TI-2D', 'TI-2E', 'TI-2F', 'TI-2G', 'TI-2H', 'TI-2I']),
             'Jurusan' => $this->faker->randomElement(['Teknik Informatika', 'Sistem Informasi']),
             'No_Handphone' => $this->faker->numerify('##########'),
+            'kelas_id' => Kelas::all()->random()->id,
         ];
     }
 }

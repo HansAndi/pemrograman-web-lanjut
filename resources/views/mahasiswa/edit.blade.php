@@ -12,8 +12,7 @@
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your i
-                            nput.<br><br>
+                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -21,34 +20,37 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('mahasiswa.update', $Mahasiswa->Nim) }}" id="myForm">
+                    <form method="POST" action="{{ route('mahasiswa.update', $mahasiswa->Nim) }}" id="myForm">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="Nim">Nim</label>
                             <input type="text" name="Nim" class="form-control" id="Nim" aria-describedby="Nim"
-                                value="{{ $Mahasiswa->Nim }}">
+                                value="{{ $mahasiswa->Nim }}">
                         </div>
                         <div class="form-group">
                             <label for="Nama">Nama</label>
                             <input type="Nama" name="Nama" class="form-control" id="Nama" aria-describedby="Nama"
-                                value="{{ $Mahasiswa->Nama }}">
+                                value="{{ $mahasiswa->Nama }}">
                         </div>
                         <div class="form-group">
                             <label for="Kelas">Kelas</label>
-                            <input type="Kelas" name="Kelas" class="form-control" id="Kelas"
-                                aria-describedby="password" value="{{ $Mahasiswa->Kelas }}">
+                            <select name="Kelas" class="form-control" id="Kelas">
+                                @foreach ($kelas as $kls)
+                                    <option value="{{ $kls->id }}" {{ $mahasiswa->kelas_id == $kls->id ? 'selected' : '' }}>{{ $kls->nama_kelas }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="Jurusan">Jurusan</label>
                             <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan"
-                                aria-describedby="Jurusan" value="{{ $Mahasiswa->Jurusan }}">
+                                aria-describedby="Jurusan" value="{{ $mahasiswa->Jurusan }}">
                         </div>
                         <div class="form-group">
                             <label for="No_Handphone">No_Handphone</label>
 
                             <input type="No_Handphone" name="No_Handphone" class="form-control" id="No_Handphone"
-                                aria-describedby="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}">
+                                aria-describedby="No_Handphone" value="{{ $mahasiswa->No_Handphone }}">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

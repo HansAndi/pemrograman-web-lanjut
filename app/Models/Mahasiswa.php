@@ -12,11 +12,9 @@ class Mahasiswa extends Model
     protected $table='mahasiswa';
     protected $primaryKey='Nim';
     protected $guarded=['id'];
-    // protected $fillabel=[
-    //     'Nim',
-    //     'Nama',
-    //     'Kelas',
-    //     'Jurusan',
-    //     'No_Handphone',
-    // ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }
